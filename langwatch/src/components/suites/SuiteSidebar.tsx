@@ -384,18 +384,15 @@ function RunSummaryLine({
 }) {
   if (totalCount === 0) return null;
   return (
-    <HStack gap={1}>
-      <StatusIcon passed={passedCount} total={totalCount} />
-      <Text fontSize="xs">
-        {passedCount}/{totalCount} passed
-        {lastRunTimestamp && (
-          <Text as="span" color="fg.muted">
-            {" · "}
-            {formatTimeAgoCompact(lastRunTimestamp)}
-          </Text>
-        )}
-      </Text>
-    </HStack>
+    <Text fontSize="xs">
+      {passedCount}/{totalCount} passed
+      {lastRunTimestamp && (
+        <Text as="span" color="fg.muted">
+          {" · "}
+          {formatTimeAgoCompact(lastRunTimestamp)}
+        </Text>
+      )}
+    </Text>
   );
 }
 
@@ -471,6 +468,11 @@ function SuiteListItem({
       onClick={onSelect}
       onContextMenu={onContextMenu}
     >
+      {runSummary && runSummary.totalCount > 0 && (
+        <Box flexShrink={0}>
+          <StatusIcon passed={runSummary.passedCount} total={runSummary.totalCount} />
+        </Box>
+      )}
       <VStack
         align="start"
         gap={0}
@@ -554,6 +556,11 @@ function ExternalSetListItem({
       isSelected={isSelected}
       onClick={onSelect}
     >
+      {externalSet.totalCount > 0 && (
+        <Box flexShrink={0}>
+          <StatusIcon passed={externalSet.passedCount} total={externalSet.totalCount} />
+        </Box>
+      )}
       <VStack
         align="start"
         gap={0}
