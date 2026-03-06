@@ -18,7 +18,7 @@ import { SummaryStatusIcon } from "./SummaryStatusIcon";
 import type { RunGroup, RunGroupSummary } from "./run-history-transforms";
 import { groupRunsByBatchId } from "./run-history-transforms";
 import { BatchSection } from "./BatchSection";
-import { RunSummaryFooter } from "./RunSummaryFooter";
+import { RunSummaryCounts } from "./RunSummaryCounts";
 import type { ScenarioRunData } from "~/server/scenarios/scenario-event.types";
 import type { ViewMode } from "./useRunHistoryStore";
 
@@ -95,6 +95,7 @@ export function GroupRow({
         <Text fontSize="xs" color="fg.muted">
           {runCount} {runCount === 1 ? "run" : "runs"}
         </Text>
+        <RunSummaryCounts summary={summary} />
       </HStack>
 
       {/* Expanded content - scenario runs sub-grouped by batch */}
@@ -117,7 +118,6 @@ export function GroupRow({
         </>
       )}
 
-      <RunSummaryFooter summary={summary} />
     </>
   );
 }
